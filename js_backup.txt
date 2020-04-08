@@ -1,0 +1,141 @@
+var slideInterval = 4000;
+
+function getAverageColor(imgEl){
+    var canvas = document.createElement("canvas");
+    var context = canvas.getContext('2d');
+    var blockSize = 5;
+    var defaultRGB = {r:0,g:0,b:0};
+    var rgb = {r:0,g:0,b:0};
+    var count = 0;
+    var height,width,data,length,i=-4;
+
+    if(!context){
+        console.log("error: not context");
+        return defaultRGB;
+    }
+
+    height = canvas.height = imgEl.naturalHeight || imgEl.offsetHeight || imgEl.height;
+    width = canvas.width = imgEl.naturalWidth || imgEl.offsetWidth || imgEl.width;
+
+    context.drawImage(imgEl, 0, 0);
+
+    try {
+        data = context.getImageData(0, 0, width, height);
+    } catch(e) {
+        /* security error, img on diff domain */
+        console.log("error: try catch");
+        return defaultRGB;
+    }
+
+    length = data.data.length;
+
+    while ( (i += blockSize * 4) < length ) {
+        ++count;
+        rgb.r += data.data[i];
+        rgb.g += data.data[i+1];
+        rgb.b += data.data[i+2];
+    }
+
+    // ~~ used to floor values
+    rgb.r = ~~(rgb.r/count);
+    rgb.g = ~~(rgb.g/count);
+    rgb.b = ~~(rgb.b/count);
+
+    return rgb;
+}
+
+function darwColor(imgEl){
+    var a = document.getElementById('Slider_Container');
+    a.style.backgroundColor = getAverageColor(imgEl);
+}
+
+function getSlide(){
+    return 
+    document.getElementsById('Slider_Container').getElementsByTagName('div');
+}
+
+function GetSlideCilde(){
+    return
+    document.getElementsById('Slider_Container').getElementsByTagName('div');
+}
+
+function moveForward(){
+    var check = 0;
+    var pointer = 0;
+    var figures = getSlide();
+    //var child = GetSlideCilde();
+    var childCount = document.getElementById('Slider_Container').childElementCount;
+    var child = document.getElementById('Slider_Container').firstChild;
+    var lastChild = document.getElementById('Slider_Container').lastChild;
+
+    //document.getElementsByClassName('Slider_Container').childNodces[1].nodeValue.className = "Slide_visible";
+    for(;;){
+        check++;
+        if(child == lastChild){
+            child = document.getElementById('Slider_Container').firstChild;
+            check = 0;
+            console.log("Break");
+            break;
+        }
+        console.log("cant Break");
+        if(child.className == 'Slide_visible'){
+            child.className = 'Slide_hidden' ;
+            pointer = check;
+            console.log(pointer);
+            console.log("hidden");
+        }
+        child = child.nextSibling;
+    }
+    console.log("Ok Break");
+    pointer = pointer+1;
+    if(pointer > 8){
+        pointer = 1;
+    }
+    console.log(pointer);
+    for(var i =0; i< pointer; i++){
+        child = child.nextSibling;
+    }
+    console.log("change class");
+    child.className = 'Slide_visible';
+    switch (pointer){
+        case 1: 
+            darwColor(document.getElementById('Slide_id_01'));
+            console.log("case 1");
+            break;
+        case 3: 
+            darwColor(document.getElementById('Slide_id_02'));
+            console.log("case 2");
+            break;
+        case 5: 
+            darwColor(document.getElementById('Slide_id_03'));
+            console.log("case 3");
+            break;
+        case 7:
+            darwColor(document.getElementById('Slide_id_04'));
+            break;
+    }
+    //darwColor();
+    console.log("visible");
+    /*
+    for (var i = 0; i<childCount;i++){
+        if (figures[i].className == 'Slide_visible'){
+            figures[i].className = 'Slide_hidden';
+            pointer = i;
+        }
+    }
+    
+
+    console.log(figures);
+    //console.log(child);
+
+    // if(++pointer == figures.length){
+    //     pointer = 0;
+    // }
+    // figures[pointer].className = 'Slide_visible';
+    */
+    setTimeout(moveForward, slideInterval);
+}
+
+var iwantget = document.getElementById('Slide_id_01');
+//iwantget.style.backgroundColor
+moveForward();

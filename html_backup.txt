@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>인성아 미안</title>
+        <link rel="stylesheet" type="text/css" href="ins.css">
+    </head>
+    <body class="ducamiUiPortal">
+        <div id = "root">
+            <div id = "wrapper">
+                <div class = "pages_Body">
+                    <div class = "Banner">
+
+                    </div>                    
+                    <header class="MainHeader_HeaderWrapper">
+                        <div class="MainHeader_UtilContainer">
+                            <span class="original-logo">
+                                <a href="www.ducami.com">
+                                    <img src="DUCAMI.png" class="Logo_main">
+                                </a>
+                            </span>
+                            <div class="MainHeader_SearchBoxWrapper">
+                                <div class="SearchBox_Container">
+                                    <div class="SearchBox_Text"> 배우고 싶은 것이 있나요?</div>
+                                    <div class="SearchBox_SearchIcon">
+                                        <img src="search_icon.png">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="UnAuthNavigation"></div>
+                        </div>
+                    </header>
+                    <main class="pages_Main">
+                        <div class="Slider_Wrapper">
+                            <div id="Slider_Container">
+                                <div class="Slide_visible">
+                                    <img src="DUCAMI.jpg" id="Slide_id_01">
+                                </div>
+                                <div class="Slide_hidden">
+                                    <img src="slide1.png" id="Slide_id_02">
+                                </div>
+                                <div class="Slide_hidden">
+                                    <img src="slide1.png" id="Slide_id_03">
+                                </div>
+                                <div class="Slide_hidden">
+                                    <img src="slide1.png" id="Slide_id_04">
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                    <footer class="Footer">
+
+                    </footer>
+                </div>
+            </div>
+
+        </div>
+        <script type="text/javascript" src="slide.js"></script>
+    </body>
+</html>
